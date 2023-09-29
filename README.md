@@ -7,6 +7,7 @@ Hyeconomy is a diamond economy plugin uses MariaDB for database storage and asyn
 - Check your current balance.
 - View a leaderboard of top players.
 - Efficient run asynchronously, ensuring that economy-related actions do not cause any lag on your server.
+- Support [MiniMessage](https://docs.advntr.dev/minimessage/format.html) format 
 
 ## Server Compatibility
 - **Paper / Folia** and any forks.
