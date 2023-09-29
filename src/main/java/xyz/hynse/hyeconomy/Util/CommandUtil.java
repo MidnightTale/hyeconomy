@@ -1,18 +1,12 @@
 package xyz.hynse.hyeconomy.Util;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import xyz.hynse.hyeconomy.Command.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandUtil implements CommandExecutor {
 
@@ -32,9 +26,7 @@ public class CommandUtil implements CommandExecutor {
             case "balance" -> BalanceCommand.execute(player);
             case "deposit" -> DepositCommand.execute(player, args);
             case "send" -> SendCommand.execute(player, args);
-            case "top" -> {
-                // TODO: Implement leaderboard
-            }
+            case "top" -> TopCommand.execute(player);
             case "withdraw" -> WithdrawCommand.execute(player, args);
             default -> sender.sendMessage((Component) MessageUtil.getMessage("general.unknownCommand", "%command%", cmd.getName()));
         }

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,5 +56,26 @@ public class PlayerRequest {
             // Log the exception with a specific logging level (e.g., Level.SEVERE)
             logger.log(Level.SEVERE, "An error occurred while setting player balance for UUID: " + playerUUID, e);
         }
+    }
+    public static List<PlayerBalanceEntry> getTopPlayers(int limit) {
+        List<PlayerBalanceEntry> topPlayers = new ArrayList<>();
+
+        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+             PreparedStatement statement = conn.prepareStatement("SELECT player_uuid, balance FROM player_balances ORDER BY balance DESC LIMIT ?")) {
+
+            statement.setInt(1, limit);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    UUID playerUUID = UUID.fromString(resultSet.getString("player_uuid"));
+                    int balance = resultSet.getInt("balance");
+                    topPlayers.add(new PlayerBalanceEntry(playerUUID, balance));
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "An error occurred while fetching top players: " + e.getMessage(), e);
+        }
+
+        return topPlayers;
     }
 }

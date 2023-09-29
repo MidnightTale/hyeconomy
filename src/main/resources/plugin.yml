@@ -4,7 +4,7 @@ main: xyz.hynse.hyeconomy.Hyeconomy
 api-version: '1.20'
 folia-supported: true
 description: economy using diamonds. Manage your SMP!
-author: [MidnightTale_, MDCason]
+author: [MidnightTale_, MDCason, Westy_]
 website: https://hynse.xyz
 commands:
   balance:
@@ -24,7 +24,7 @@ commands:
     permission: hyeconomy.send
   top:
     description: Display the leaderboard of players with the most diamonds
-    usage: /dtop [count]
+    usage: /dtop
     aliases: [dtop]
     permission: hyeconomy.top
   withdraw:
