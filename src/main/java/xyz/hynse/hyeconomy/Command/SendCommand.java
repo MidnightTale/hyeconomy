@@ -19,11 +19,14 @@ public class SendCommand {
                 return;
             }
 
-            Player targetPlayer = Bukkit.getPlayer(args[0]);
-            if (targetPlayer == null) {
-                player.sendMessage((Component) MessageUtil.getMessage("send.PlayerNotFound"));
+            String targetPlayerName = args[0];
+
+            if (player.getName().equalsIgnoreCase(targetPlayerName)) {
+                player.sendMessage((Component) MessageUtil.getMessage("send.SelfSend"));
                 return;
             }
+
+            Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
 
             try {
                 int amount = Integer.parseInt(args[1]);
@@ -35,6 +38,11 @@ public class SendCommand {
                 int senderBalance = getPlayerBalance(player.getUniqueId());
                 if (senderBalance < amount) {
                     player.sendMessage((Component) MessageUtil.getMessage("send.NotEnoughDiamonds"));
+                    return;
+                }
+
+                if (targetPlayer == null) {
+                    player.sendMessage((Component) MessageUtil.getMessage("send.PlayerNotFound"));
                     return;
                 }
 
