@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'xyz.hynse'
@@ -18,7 +19,31 @@ repositories {
 }
 
 dependencies {
-compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT"
+
+    // Use a relocated version of HikariCP
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+
+    // Add the MariaDB JDBC driver
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.2.0'
+
+    //Mini Message
+    implementation 'net.kyori:adventure-text-minimessage:4.14.0'
+
+    // Define a configuration for the lib folder
+    configurations {
+        lib
+    }
+
+    // Add the lib folder as a runtime dependency for the Minecraft server
+    dependencies {
+        runtimeOnly files(configurations.lib.collect { "${project.projectDir}/lib/${it.name}" })
+    }
+
+    shadowJar {
+        // Relocate the HikariCP package
+        relocate 'com.zaxxer.hikari', 'xyz.hynse.hyeconomy.hikari'
+    }
 }
 
 def targetJavaVersion = 17
@@ -37,6 +62,24 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
+// Define a new configuration 'libConfig' that extends 'implementation' and is resolvable
+configurations {
+    libConfig {
+        canBeResolved = true
+        extendsFrom implementation
+    }
+}
+
+
+// Define the task to copy the MariaDB JDBC driver to the lib folder
+tasks.register('copyMariaDBDriver', Copy) {
+    from configurations.libConfig
+    into 'lib'
+}
+
+// Ensure that the copy task is executed before building the shadow JAR
+shadowJar.dependsOn copyMariaDBDriver
+
 processResources {
     def props = [version: version]
     inputs.properties props
@@ -44,4 +87,11 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+tasks.register('deploy', Exec) {
+    dependsOn shadowJar
+    commandLine 'scp', '-i', "~/.ssh/lynse", '-P', '24', "./build/libs/hyeconomy-1.0-SNAPSHOT-all.jar", "mid@ssh.lynse:/home/mid/hynse/devtest/plugins/"
+}
+tasks.register('installondevtest') {
+    dependsOn 'build', 'jar', 'shadowJar', 'deploy'
 }

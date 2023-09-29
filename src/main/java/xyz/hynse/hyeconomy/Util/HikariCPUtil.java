@@ -1,4 +1,4 @@
-package xyz.hynse.hyeconomy;
+package xyz.hynse.hyeconomy.Util;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,17 +10,30 @@ import java.sql.Statement;
 import java.util.logging.Level;
 
 import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.Bukkit.getServer;
 
-public class HikariCP {
+public class HikariCPUtil {
     public static HikariDataSource dataSource;
-
     public static void initializeDataSource() {
+        String username = "mid";
+        String password = "2545";
+        String driver = "jdbc:mariadb://";
+        String host = "localhost";
+        String port = "3306";
+        String database = "test_hyeconomy";
+        String url = driver + host +":" + port + "/" + database;
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mariadb://localhost:3306/test_hyeconomy");
-        config.setUsername("mid");
-        config.setPassword("2545");
+        config.setJdbcUrl(url);
+        config.setUsername(username);
+        config.setPassword(password);
 
         dataSource = new HikariDataSource(config);
+        getServer().getLogger().info("--------- initializeDataSource ---------");
+        getServer().getLogger().info("JdbcUrl [" + url + "]");
+        getServer().getLogger().info("Username [" + username + "]");
+        getServer().getLogger().info("Password [REDACTED]");
+        getServer().getLogger().info("dataSource [" + dataSource + "]");
+        getServer().getLogger().info("----------------------------------------");
     }
 
     public static void createTablesIfNotExists() {

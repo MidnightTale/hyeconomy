@@ -5,3 +5,19 @@ api-version: '1.20'
 folia-supported: true
 description: Basic economy plugin for Minecraft using diamonds.
 author: MidnightTale_
+commands:
+  balance:
+    description: Check your balance
+    usage: /balance
+  deposit:
+    description: Deposit diamonds into your account
+    usage: /deposit <amount>
+  send:
+    description: Send diamonds to another player
+    usage: /send <player> <amount>
+  top:
+    description: Display the leaderboard of players with the most diamonds
+    usage: /top [count]
+  withdraw:
+    description: Withdraw diamonds from your account
+    usage: /withdraw <amount>
