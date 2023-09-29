@@ -26,7 +26,7 @@ public class SendCommand {
                 return;
             }
 
-            Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
+            Player targetPlayer = Bukkit.getPlayerExact(targetPlayerName);
 
             try {
                 int amount = Integer.parseInt(args[1]);
@@ -42,11 +42,16 @@ public class SendCommand {
                 }
 
                 if (targetPlayer == null) {
-                    player.sendMessage((Component) MessageUtil.getMessage("send.PlayerNotFound"));
-                    return;
+                    targetPlayer = Bukkit.getOfflinePlayer(targetPlayerName).getPlayer();
+
+                    if (targetPlayer == null) {
+                        player.sendMessage((Component) MessageUtil.getMessage("send.PlayerNotFound"));
+                        return;
+                    }
                 }
 
                 int targetBalance = getPlayerBalance(targetPlayer.getUniqueId());
+
                 setPlayerBalance(player.getUniqueId(), senderBalance - amount);
                 setPlayerBalance(targetPlayer.getUniqueId(), targetBalance + amount);
 

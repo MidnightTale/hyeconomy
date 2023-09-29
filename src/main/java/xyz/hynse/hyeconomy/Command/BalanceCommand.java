@@ -13,6 +13,11 @@ import java.util.UUID;
 
 public class BalanceCommand {
     public static void execute(@NotNull CommandSender sender) {
+        if (sender instanceof Player player && !player.hasPermission("hyecomoney.balance")) {
+            player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
+            return;
+        }
+
         Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!(sender instanceof Player player)) {
                 sender.sendMessage((Component) MessageUtil.getMessage("general.playerOnly"));

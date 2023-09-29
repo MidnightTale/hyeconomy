@@ -3,24 +3,34 @@ version: '${version}'
 main: xyz.hynse.hyeconomy.Hyeconomy
 api-version: '1.20'
 folia-supported: true
-description: Basic economy plugin for Minecraft using diamonds.
+description: economy using diamonds. Manage you smp!
 author: MidnightTale_
+website: https://your-website-url.com
 commands:
   balance:
     description: Check your balance
     usage: /balance
+    aliases: [bal]
+    permission: hyeconomy.balance
   deposit:
     description: Deposit diamonds into your account
     usage: /deposit <amount>
+    permission: hyeconomy.deposit
   send:
     description: Send diamonds to another player
     usage: /send <player> <amount>
+    aliases: [pay]
+    permission: hyeconomy.send
   top:
     description: Display the leaderboard of players with the most diamonds
     usage: /top [count]
+    permission: hyeconomy.top
   withdraw:
     description: Withdraw diamonds from your account
     usage: /withdraw <amount>
+    aliases: [wd]
+    permission: hyeconomy.withdraw
   hyeconomyreload:
-    description: Reload Config and Message
+    description: Reload Config and Messages
     usage: /hyeconomyreload
+    permission: hyeconomy.reload

@@ -3,12 +3,17 @@ package xyz.hynse.hyeconomy.Util;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import xyz.hynse.hyeconomy.Command.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandUtil implements CommandExecutor {
 
@@ -18,8 +23,6 @@ public class CommandUtil implements CommandExecutor {
             sender.sendMessage((Component) MessageUtil.getMessage("general.playerOnly"));
             return true;
         }
-
-        MiniMessage mm = MiniMessage.builder().build();
 
         switch (cmd.getName().toLowerCase()) {
             case "balance" -> BalanceCommand.execute(player);

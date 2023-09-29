@@ -18,6 +18,7 @@ messages:
     NotEnoughDiamonds: "You don't have enough diamonds."
     SuccessSender: "Sent <#00FF00>%amount% <#FF0000>diamonds to %target%."
     SuccessReceiver: "%sender% sent you <#00FF00>%amount% <#FF0000>diamonds."
+    SelfSend: "BRUH NO YOU STUPID ???!"
   withdraw:
     Usage: "Usage: /withdraw <#FF0000>[amount]"
     AmountPositive: "Amount must be positive."
