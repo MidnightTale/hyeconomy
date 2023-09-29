@@ -56,6 +56,7 @@ public class WithdrawCommand {
                     setPlayerBalance(player.getUniqueId(), newBalance + diamondsNotAdded);
                     int diamondback = amount - diamondsNotAdded;
                     player.sendMessage((Component) MessageUtil.getMessage("withdraw.NotEnoughSpacePartial", "%amount%", String.valueOf(amount), "%diamondback%", String.valueOf(diamondback)));
+                    leftOver.clear();
                     return;
                 }
 
