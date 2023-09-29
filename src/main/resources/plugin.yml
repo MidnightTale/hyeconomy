@@ -21,3 +21,6 @@ commands:
   withdraw:
     description: Withdraw diamonds from your account
     usage: /withdraw <amount>
+  hyeconomyreload:
+    description: Reload Config and Message
+    usage: /hyeconomyreload

@@ -24,6 +24,7 @@ public final class Hyeconomy extends JavaPlugin {
         Objects.requireNonNull(getCommand("send")).setExecutor(new CommandUtil());
         Objects.requireNonNull(getCommand("top")).setExecutor(new CommandUtil());
         Objects.requireNonNull(getCommand("withdraw")).setExecutor(new CommandUtil());
+        Objects.requireNonNull(getCommand("hyeconomyreload")).setExecutor(new CommandUtil());
     }
 
     @Override
@@ -35,3 +36,4 @@ public final class Hyeconomy extends JavaPlugin {
         getLogger().info("Hyeconomy has been disabled.");
     }
 }
+

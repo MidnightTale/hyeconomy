@@ -28,7 +28,7 @@ public class CommandUtil implements CommandExecutor {
                 // TODO: Implement leaderboard
             }
             case "withdraw" -> WithdrawCommand.execute(player, args);
-            case "hyecomoneyreload" -> ReloadCommand.execute(player);
+            case "hyeconomyreload" -> ReloadCommand.execute(player);
             default -> sender.sendMessage((Component) MessageUtil.getMessage("general.unknownCommand", "%command%", cmd.getName()));
         }
         return true;
