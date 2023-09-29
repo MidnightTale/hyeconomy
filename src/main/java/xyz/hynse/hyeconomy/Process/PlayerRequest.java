@@ -10,8 +10,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.bukkit.Bukkit.getServer;
-
 public class PlayerRequest {
     private static final Logger logger = Logger.getLogger(PlayerRequest.class.getName());
 
@@ -28,19 +26,16 @@ public class PlayerRequest {
 
         try (Connection conn = HikariCPUtil.dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("SELECT balance FROM player_balances WHERE player_uuid = ?")) {
-            getServer().getLogger().info("statement [" + statement + "]");
 
             statement.setString(1, playerUUID.toString());
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     data = resultSet.getInt("balance");
-                    getServer().getLogger().info("data [" + data + "]");
                 }
 
             }
         } catch (SQLException e) {
-            // Log the exception with a specific logging level (e.g., Level.SEVERE)
             logger.log(Level.SEVERE, "An error occurred while fetching player balance for UUID: " + playerUUID, e);
         }
 
@@ -50,7 +45,6 @@ public class PlayerRequest {
     private static void setPlayerData(UUID playerUUID, int newData) {
         try (Connection conn = HikariCPUtil.dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("REPLACE INTO player_balances (player_uuid, balance) VALUES (?, ?)")) {
-            getServer().getLogger().info("statement [" + statement + "]");
 
             statement.setString(1, playerUUID.toString());
             statement.setInt(2, newData);

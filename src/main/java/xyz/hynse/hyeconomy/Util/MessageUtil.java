@@ -16,7 +16,7 @@ public class MessageUtil {
         messagesConfig = loadMessagesConfig();
     }
 
-    private FileConfiguration loadMessagesConfig() {
+    public static FileConfiguration loadMessagesConfig() {
         File configFile = new File(Hyeconomy.instance.getDataFolder(), "messages.yml");
         if (!configFile.exists()) {
             Hyeconomy.instance.saveResource("messages.yml", false);

@@ -7,31 +7,29 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import xyz.hynse.hyeconomy.Command.BalanceCommand;
-import xyz.hynse.hyeconomy.Command.DepositCommand;
-import xyz.hynse.hyeconomy.Command.SendCommand;
-import xyz.hynse.hyeconomy.Command.WithdrawCommand;
+import xyz.hynse.hyeconomy.Command.*;
 
 public class CommandUtil implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage((Component) MessageUtil.getMessage("playerOnly"));
+            sender.sendMessage((Component) MessageUtil.getMessage("general.playerOnly"));
             return true;
         }
 
         MiniMessage mm = MiniMessage.builder().build();
 
         switch (cmd.getName().toLowerCase()) {
-            case "balance" -> BalanceCommand.execute(player, mm);
-            case "deposit" -> DepositCommand.execute(player, args, mm);
-            case "send" -> SendCommand.execute(player, args, mm);
+            case "balance" -> BalanceCommand.execute(player);
+            case "deposit" -> DepositCommand.execute(player, args);
+            case "send" -> SendCommand.execute(player, args);
             case "top" -> {
-                // Implement top command logic here
+                // TODO: Implement leaderboard
             }
-            case "withdraw" -> WithdrawCommand.execute(player, args, mm);
-            default -> sender.sendMessage((Component) MessageUtil.getMessage("unknownCommand", "%command%", cmd.getName()));
+            case "withdraw" -> WithdrawCommand.execute(player, args);
+            case "hyecomoneyreload" -> ReloadCommand.execute(player);
+            default -> sender.sendMessage((Component) MessageUtil.getMessage("general.unknownCommand", "%command%", cmd.getName()));
         }
         return true;
     }

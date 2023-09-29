@@ -1,4 +1,6 @@
 # Database connection configuration
+debugMode: false # Set this to 'true' to enable debugging, 'false' to disable.
+
 database:
   driver: "jdbc:mariadb://"  # JDBC URL driver (e.g., "jdbc:mariadb://")
   host: "localhost"          # Database host (e.g., "localhost")
