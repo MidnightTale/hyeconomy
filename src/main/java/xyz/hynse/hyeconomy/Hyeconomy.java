@@ -15,8 +15,8 @@ public final class Hyeconomy extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
-        HikariCPUtil.initializeDataSource(getConfig());
         HikariCPUtil.downloadMariaDBDriver();
+        HikariCPUtil.initializeDataSource(getConfig());
         HikariCPUtil.createTablesIfNotExists();
         getLogger().info("Hyeconomy has been enabled.");
         Objects.requireNonNull(getCommand("balance")).setExecutor(new CommandUtil());
