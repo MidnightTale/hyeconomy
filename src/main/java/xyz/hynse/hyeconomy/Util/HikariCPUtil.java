@@ -2,6 +2,7 @@ package xyz.hynse.hyeconomy.Util;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,20 +15,21 @@ import static org.bukkit.Bukkit.getServer;
 
 public class HikariCPUtil {
     public static HikariDataSource dataSource;
-    public static void initializeDataSource() {
-        String username = "mid";
-        String password = "2545";
-        String driver = "jdbc:mariadb://";
-        String host = "localhost";
-        String port = "3306";
-        String database = "test_hyeconomy";
-        String url = driver + host +":" + port + "/" + database;
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(url);
-        config.setUsername(username);
-        config.setPassword(password);
+    public static void initializeDataSource(FileConfiguration config) {
+        String driver = config.getString("database.driver");
+        String host = config.getString("database.host");
+        String port = config.getString("database.port");
+        String databaseName = config.getString("database.databaseName");
+        String username = config.getString("database.username");
+        String password = config.getString("database.password");
 
-        dataSource = new HikariDataSource(config);
+        String url = driver + host + ":" + port + "/" + databaseName;
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl(url);
+        hikariConfig.setUsername(username);
+        hikariConfig.setPassword(password);
+
+        dataSource = new HikariDataSource(hikariConfig);
         getServer().getLogger().info("--------- initializeDataSource ---------");
         getServer().getLogger().info("JdbcUrl [" + url + "]");
         getServer().getLogger().info("Username [" + username + "]");

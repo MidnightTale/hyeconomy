@@ -1,0 +1,10 @@
+# Database connection configuration
+database:
+  driver: "jdbc:mariadb://"  # JDBC URL driver (e.g., "jdbc:mariadb://")
+  host: "localhost"          # Database host (e.g., "localhost")
+  port: "3306"               # Database port (e.g., "3306")
+  databaseName: "database"  # Database name
+  username: "root"            # Database username
+  password: "password"           # Database password
+
+# Other configuration options can be added here as needed
