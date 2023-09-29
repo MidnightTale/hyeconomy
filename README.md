@@ -1,4 +1,3 @@
-Hyeconomy is a diamond economy plugin uses MariaDB for database storage and async.
 
 ## Features
 - Economy system for managing in-game currency (diamonds).
