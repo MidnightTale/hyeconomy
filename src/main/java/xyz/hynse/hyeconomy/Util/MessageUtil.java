@@ -38,4 +38,7 @@ public class MessageUtil {
 
         return mm.deserialize(message);
     }
+    public static void updateMessagesConfig() {
+        messagesConfig = loadMessagesConfig();
+    }
 }

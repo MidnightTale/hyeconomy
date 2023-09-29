@@ -7,6 +7,7 @@ import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getServer;
+import static xyz.hynse.hyeconomy.Util.MessageUtil.loadMessagesConfig;
 
 public class ReloadCommand {
     public static void execute(Player player) {
@@ -14,8 +15,8 @@ public class ReloadCommand {
            if (HikariCPUtil.dataSource != null) {
                HikariCPUtil.dataSource.close();
            }
-            Hyeconomy.instance.reloadConfig();
-            MessageUtil.loadMessagesConfig();
+               Hyeconomy.instance.reloadConfig();
+               MessageUtil.updateMessagesConfig();
             getServer().getLogger().warning("Hyeconomy database connection closed.");
             HikariCPUtil.initializeDataSource(Hyeconomy.instance.getConfig());
            getServer().getLogger().warning("Hyeconomy reconnect connection database.");
