@@ -5,6 +5,9 @@ import org.bukkit.entity.Player;
 import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
+
+import static org.bukkit.Bukkit.getServer;
+
 public class ReloadCommand {
     public static void execute(Player player) {
        if (player.hasPermission("hyecomoney.reload")) {
@@ -13,7 +16,9 @@ public class ReloadCommand {
            }
             Hyeconomy.instance.reloadConfig();
             MessageUtil.loadMessagesConfig();
+            getServer().getLogger().warning("Hyeconomy database connection closed.");
             HikariCPUtil.initializeDataSource(Hyeconomy.instance.getConfig());
+           getServer().getLogger().warning("Hyeconomy reconnect connection database.");
             player.sendMessage((Component) MessageUtil.getMessage("general.reloadSuccess"));
         } else {
             player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
