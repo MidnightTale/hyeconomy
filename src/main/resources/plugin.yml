@@ -3,9 +3,9 @@ version: '${version}'
 main: xyz.hynse.hyeconomy.Hyeconomy
 api-version: '1.20'
 folia-supported: true
-description: economy using diamonds. Manage you smp!
-author: MidnightTale_
-website: https://your-website-url.com
+description: economy using diamonds. Manage your SMP!
+author: [MidnightTale_, MDCason]
+website: https://hynse.xyz
 commands:
   balance:
     description: Check your balance
@@ -14,23 +14,31 @@ commands:
     permission: hyeconomy.balance
   deposit:
     description: Deposit diamonds into your account
-    usage: /deposit <amount>
+    usage: /dp <amount>
+    aliases: [dp]
     permission: hyeconomy.deposit
   send:
     description: Send diamonds to another player
-    usage: /send <player> <amount>
-    aliases: [pay]
+    usage: /dsend <player> <amount>
+    aliases: [dsend]
     permission: hyeconomy.send
   top:
     description: Display the leaderboard of players with the most diamonds
-    usage: /top [count]
+    usage: /dtop [count]
+    aliases: [dtop]
     permission: hyeconomy.top
   withdraw:
     description: Withdraw diamonds from your account
-    usage: /withdraw <amount>
+    usage: /wd <amount>
     aliases: [wd]
     permission: hyeconomy.withdraw
   hyeconomyreload:
     description: Reload Config and Messages
-    usage: /hyeconomyreload
+    usage: /dreload
     permission: hyeconomy.reload
+    aliases: [dreload]
+    default: op
+libraries:
+  - com.zaxxer:HikariCP:5.0.1
+  - org.mariadb.jdbc:mariadb-java-client:3.2.0
+  - net.kyori:adventure-text-minimessage:4.14.0

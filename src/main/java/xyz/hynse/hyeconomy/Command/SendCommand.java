@@ -14,6 +14,11 @@ import static xyz.hynse.hyeconomy.Process.PlayerRequest.setPlayerBalance;
 public class SendCommand {
     public static void execute(Player player, String[] args) {
         Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
+            if (!player.hasPermission("hyeconomy.send")) {
+                player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
+                return;
+            }
+
             if (args.length != 2) {
                 player.sendMessage((Component) MessageUtil.getMessage("send.Usage"));
                 return;

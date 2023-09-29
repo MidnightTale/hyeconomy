@@ -1,6 +1,7 @@
 package xyz.hynse.hyeconomy.Command;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Process.Scheduler;
@@ -8,12 +9,11 @@ import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getServer;
-import static xyz.hynse.hyeconomy.Util.MessageUtil.loadMessagesConfig;
 
 public class ReloadCommand {
-    public static void execute(Player player) {
+    public static void execute(CommandSender sender) {
         Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
-            if (player.hasPermission("hyecomoney.reload")) {
+            if (!(sender instanceof Player) || sender.hasPermission("hyeconomy.reload")) {
                 if (HikariCPUtil.dataSource != null) {
                     HikariCPUtil.dataSource.close();
                 }
@@ -22,9 +22,9 @@ public class ReloadCommand {
                 getServer().getLogger().warning("Hyeconomy database connection closed.");
                 HikariCPUtil.initializeDataSource(Hyeconomy.instance.getConfig());
                 getServer().getLogger().warning("Hyeconomy reconnect connection database.");
-                player.sendMessage((Component) MessageUtil.getMessage("general.reloadSuccess"));
+                sender.sendMessage((Component) MessageUtil.getMessage("general.reloadSuccess"));
             } else {
-                player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
+                sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
             }
         });
     }

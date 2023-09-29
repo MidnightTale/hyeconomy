@@ -1,7 +1,6 @@
 package xyz.hynse.hyeconomy.Util;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -19,6 +18,11 @@ public class CommandUtil implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("hyeconomyreload")) {
+            ReloadCommand.execute(sender);
+            return true;
+        }
+
         if (!(sender instanceof Player player)) {
             sender.sendMessage((Component) MessageUtil.getMessage("general.playerOnly"));
             return true;
@@ -32,7 +36,6 @@ public class CommandUtil implements CommandExecutor {
                 // TODO: Implement leaderboard
             }
             case "withdraw" -> WithdrawCommand.execute(player, args);
-            case "hyeconomyreload" -> ReloadCommand.execute(player);
             default -> sender.sendMessage((Component) MessageUtil.getMessage("general.unknownCommand", "%command%", cmd.getName()));
         }
         return true;
