@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import xyz.hynse.hyeconomy.Hyeconomy;
+import xyz.hynse.hyeconomy.Process.Scheduler;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -14,6 +15,7 @@ import static xyz.hynse.hyeconomy.Util.InventoryUtil.countDiamondsInInventory;
 
 public class DepositCommand {
     public static void execute(Player player, String[] args) {
+        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
         if (args.length != 1) {
             player.sendMessage((Component) MessageUtil.getMessage("deposit.Usage"));
             return;
@@ -47,5 +49,6 @@ public class DepositCommand {
         } catch (NumberFormatException e) {
             player.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
         }
+        });
     }
 }

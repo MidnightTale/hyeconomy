@@ -11,9 +11,8 @@ public class MessageUtil {
     private static MiniMessage mm;
     private static FileConfiguration messagesConfig = null;
 
-    public MessageUtil(Hyeconomy hyeconomy) {
+    public static void initializeMiniMessage() {
         mm = MiniMessage.builder().build();
-        messagesConfig = loadMessagesConfig();
     }
 
     public static FileConfiguration loadMessagesConfig() {
@@ -38,6 +37,7 @@ public class MessageUtil {
 
         return mm.deserialize(message);
     }
+
     public static void updateMessagesConfig() {
         messagesConfig = loadMessagesConfig();
     }
