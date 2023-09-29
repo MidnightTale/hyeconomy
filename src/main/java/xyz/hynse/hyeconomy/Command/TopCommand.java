@@ -22,7 +22,9 @@ public class TopCommand {
                     List<PlayerBalanceEntry> topPlayers = PlayerRequest.getTopPlayers(limit);
                     player.sendMessage((Component) MessageUtil.getMessage("top.header"));
 
-                    for (int i = 0; i < topPlayers.size(); i++) {
+                    int maxPlayersToShow = Math.min(limit, topPlayers.size());
+
+                    for (int i = 0; i < maxPlayersToShow; i++) {
                         PlayerBalanceEntry entry = topPlayers.get(i);
                         String playerName = Bukkit.getOfflinePlayer(entry.getPlayerUUID()).getName();
                         player.sendMessage((Component) MessageUtil.getMessage("top.format", "%position%", String.valueOf(i + 1), "%player%", playerName, "%balance%", String.valueOf(entry.getBalance())));
