@@ -53,8 +53,8 @@ If you encounter any issues or have questions, please feel free to [open an issu
 
 This plugin is open-source and available under the [MIT License](LICENSE).
 
-Developer API
-## Information
+## Developer API
+### Information
 Apache Maven `pom.xml`
 ```xml
 ///repository 
@@ -81,7 +81,7 @@ dependencies {
 ```
 
 
-## Example
+### Example
 ```java
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
 
