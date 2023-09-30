@@ -1,11 +1,11 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'maven-publish'
 }
 
 group = 'xyz.hynse'
 version = '1.0-SNAPSHOT-2'
-
 repositories {
     mavenCentral()
     maven {
@@ -17,7 +17,6 @@ repositories {
         url = "https://oss.sonatype.org/content/groups/public/"
     }
 }
-
 dependencies {
     compileOnly "dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT"
 
@@ -45,6 +44,28 @@ dependencies {
         relocate 'com.zaxxer.hikari', 'xyz.hynse.hyeconomy.hikari'
     }
 }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = group
+            artifactId = 'api-hyeconomy'
+            version = project.version
+        }
+    }
+    repositories {
+        maven {
+            url = uri('https://repo.hynse.xyz/repository/maven-releases/')
+            credentials {
+                username = project.findProperty("repoUsername")
+                password = project.findProperty("repoPassword")
+            }
+        }
+    }
+}
+
+
 
 def targetJavaVersion = 17
 java {
@@ -94,4 +115,7 @@ tasks.register('deploy', Exec) {
 }
 tasks.register('installondevtest') {
     dependsOn 'build', 'jar', 'shadowJar', 'deploy'
+}
+tasks.register('pushapi') {
+    dependsOn 'build', 'jar', 'shadowJar', 'publishing'
 }

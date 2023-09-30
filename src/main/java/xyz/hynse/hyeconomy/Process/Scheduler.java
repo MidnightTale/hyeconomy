@@ -1,14 +1,12 @@
 package xyz.hynse.hyeconomy.Process;
 
-import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
-import io.papermc.paper.threadedregions.scheduler.EntityScheduler;
 public class Scheduler {
 
     private static Boolean IS_FOLIA = null;

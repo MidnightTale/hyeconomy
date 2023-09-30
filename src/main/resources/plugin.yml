@@ -4,7 +4,7 @@ main: xyz.hynse.hyeconomy.Hyeconomy
 api-version: '1.20'
 folia-supported: true
 description: economy using diamonds. Manage your SMP!
-author: [MidnightTale_, MDCason, Westy_]
+author: MidnightTale_, MDCason, Westy_
 website: https://hynse.xyz
 commands:
   balance:

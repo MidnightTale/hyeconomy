@@ -1,7 +1,5 @@
 package xyz.hynse.hyeconomy.Process;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -12,7 +10,6 @@ import xyz.hynse.hyeconomy.Hyeconomy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class SendCommandTabCompleter implements TabCompleter {
 

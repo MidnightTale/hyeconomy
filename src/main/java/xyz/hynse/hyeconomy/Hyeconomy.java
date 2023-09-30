@@ -1,6 +1,7 @@
 package xyz.hynse.hyeconomy;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.hynse.hyeconomy.API.HyeconomyAPI;
 import xyz.hynse.hyeconomy.Process.SendCommandTabCompleter;
 import xyz.hynse.hyeconomy.Util.CommandUtil;
 import xyz.hynse.hyeconomy.Util.HikariCPUtil;
@@ -8,9 +9,14 @@ import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import java.util.Objects;
 
-public final class Hyeconomy extends JavaPlugin {
+public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
     public boolean debugMode;
     public static Hyeconomy instance;
+
+    public static HyeconomyAPI getAPI() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -45,4 +51,5 @@ public final class Hyeconomy extends JavaPlugin {
         }
         getLogger().info("Hyeconomy has been disabled.");
     }
+
 }
