@@ -51,25 +51,32 @@ dependencies {
         relocate 'me.clip:placeholderapi', 'xyz.hynse.hyeconomy.placeholderapi'
     }
 }
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
 
-            groupId = group
-            artifactId = 'api-hyeconomy'
-            version = project.version
-        }
-    }
+publishing {
     repositories {
         maven {
-            url = uri('https://repo.hynse.xyz/repository/maven-releases/')
+            name = "HynseAPI"
+            url = uri("https://repo.hynse.xyz/releases")
             credentials {
-                username = project.findProperty("repoUsername")
-                password = project.findProperty("repoPassword")
+                authentication {
+                    username = project.findProperty("HynseRepositoryUsername")
+                    password = project.findProperty("HynseRepositoryPassword")
+                }
             }
         }
     }
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = group
+            artifactId = project.findProperty("HynseRepositoryArtifact")
+            version = project.version
+            from(components["java"])
+        }
+    }
+}
+javadoc {
+    destinationDir = file("${buildDir}/javadocs")
+    source = sourceSets.main.allJava
 }
 
 
