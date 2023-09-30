@@ -72,7 +72,7 @@ Apache Maven `pom.xml`
 <dependency>
   <groupId>xyz.hynse</groupId>
   <artifactId>api-hyeconomy</artifactId>
-  <version>1.0-SNAPSHOT-3</version>
+  <version>1.0-SNAPSHOT-4</version>
 </dependency>
 ```
 Gradle Groovy DSL `build.gradle`
@@ -81,7 +81,7 @@ repositories {
     maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
 }
 dependencies { 
-    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-3'
+    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-4'
 }
 ```
 
