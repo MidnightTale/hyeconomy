@@ -61,7 +61,8 @@ If you encounter any issues or have questions, please feel free to [open an issu
 
 This plugin is open-source and available under the [MIT License](LICENSE).
 
-## Developer API
+## Developer API [![Latest Release](https://repo.hynse.xyz/api/badge/latest/releases/xyz/hynse/api-hyeconomy)](https://repo.hynse.xyz/api/latest/releases/xyz/hynse/api-hyeconomy)
+
 ### Information
 Apache Maven `pom.xml`
 ```xml
@@ -72,7 +73,7 @@ Apache Maven `pom.xml`
 <dependency>
   <groupId>xyz.hynse</groupId>
   <artifactId>api-hyeconomy</artifactId>
-  <version>1.1-SNAPSHOT-1</version>
+  <version>1.1-SNAPSHOT-2</version>
 </dependency>
 ```
 Gradle Groovy DSL `build.gradle`
@@ -81,7 +82,7 @@ repositories {
     maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
 }
 dependencies { 
-    compileOnly 'xyz.hynse:api-hyeconomy:1.1-SNAPSHOT-1'
+    compileOnly 'xyz.hynse:api-hyeconomy:1.1-SNAPSHOT-2'
 }
 ```
 
