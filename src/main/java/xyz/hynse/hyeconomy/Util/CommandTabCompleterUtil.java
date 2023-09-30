@@ -27,6 +27,4 @@ public class CommandTabCompleterUtil {
         }
         return null;
     }
-
-    // You can add more tab completion methods here for common use cases
 }
