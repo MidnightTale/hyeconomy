@@ -54,16 +54,16 @@ If you encounter any issues or have questions, please feel free to [open an issu
 This plugin is open-source and available under the [MIT License](LICENSE).
 
 Developer API
-## information [![Maven Central](https://img.shields.io/maven-central/v/xyz.hynse/api-hyeconomy.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22xyz.hynse%22%20AND%20a:%22api-hyeconomy%22)
+## Information
 Apache Maven `pom.xml`
 ```xml
-//repository 
+///repository 
 <repository>
     <id>hyeconomy</id>
     <url>https://repo.papermc.io/repository/maven-public/</url>
 </repository>
 
-//artifact
+///artifact
 <dependency>
   <groupId>xyz.hynse</groupId>
   <artifactId>api-hyeconomy</artifactId>
@@ -73,12 +73,14 @@ Apache Maven `pom.xml`
 Gradle Groovy DSL `build.gradle`
 ```gradlee
 repositories {
-  maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
+    maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
 }
 dependencies { 
-implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-2'
+    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-2'
 }
 ```
+
+
 ## Example
 ```java
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
