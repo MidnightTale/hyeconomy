@@ -2,6 +2,7 @@ package xyz.hynse.hyeconomy;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
+import xyz.hynse.hyeconomy.API.Placeholder;
 import xyz.hynse.hyeconomy.Process.SendCommandTabCompleter;
 import xyz.hynse.hyeconomy.Util.CommandUtil;
 import xyz.hynse.hyeconomy.Util.HikariCPUtil;
@@ -35,6 +36,7 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
         Objects.requireNonNull(getCommand("hyeconomyreload")).setExecutor(new CommandUtil());
 
         Objects.requireNonNull(getCommand("send")).setTabCompleter(new SendCommandTabCompleter());
+        new Placeholder().register();
     }
 
     @Override
