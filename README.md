@@ -53,3 +53,43 @@ If you encounter any issues or have questions, please feel free to [open an issu
 
 This plugin is open-source and available under the [MIT License](LICENSE).
 
+Developer API
+## information [![Maven Central](https://img.shields.io/maven-central/v/xyz.hynse/api-hyeconomy.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22xyz.hynse%22%20AND%20a:%22api-hyeconomy%22)
+Apache Maven `pom.xml`
+```xml
+//repository 
+<repository>
+    <id>hyeconomy</id>
+    <url>https://repo.papermc.io/repository/maven-public/</url>
+</repository>
+
+//artifact
+<dependency>
+  <groupId>xyz.hynse</groupId>
+  <artifactId>api-hyeconomy</artifactId>
+  <version>1.0-SNAPSHOT-2</version>
+</dependency>
+```
+Gradle Groovy DSL `build.gradle`
+```gradlee
+repositories {
+  maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
+}
+dependencies { 
+implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-2'
+}
+```
+## Example
+```java
+import xyz.hynse.hyeconomy.API.HyeconomyAPI;
+
+// when you need to get or set player balances:
+HyeconomyAPI hyeconomyAPI = Hyeconomy.getAPI();
+
+// Get a player's balance by UUID
+UUID playerUUID = /* UUID of the player */;
+int balance = hyeconomyAPI.getPlayerBalance(playerUUID);
+
+// Set a player's balance by UUID
+int newBalance = /* The new balance */;
+hyeconomyAPI.setPlayerBalance(playerUUID, newBalance);```
