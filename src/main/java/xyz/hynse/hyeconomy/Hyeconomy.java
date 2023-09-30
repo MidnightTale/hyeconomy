@@ -13,10 +13,6 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
     public boolean debugMode;
     public static Hyeconomy instance;
 
-    public static HyeconomyAPI getAPI() {
-        return instance;
-    }
-
     @Override
     public void onEnable() {
         instance = this;
