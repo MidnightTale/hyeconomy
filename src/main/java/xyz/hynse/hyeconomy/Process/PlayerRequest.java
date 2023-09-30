@@ -97,5 +97,24 @@ public class PlayerRequest {
 
         return balance;
     }
+    public static UUID getPlayerUUIDByName(String playerName) {
+        UUID playerUUID = null;
+
+        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+             PreparedStatement statement = conn.prepareStatement("SELECT player_uuid FROM player_balances WHERE player_name = ?")) {
+
+            statement.setString(1, playerName);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    playerUUID = UUID.fromString(resultSet.getString("player_uuid"));
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "An error occurred while fetching player UUID for name: " + playerName, e);
+        }
+
+        return playerUUID;
+    }
 
 }

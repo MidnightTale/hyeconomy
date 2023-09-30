@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import xyz.hynse.hyeconomy.Hyeconomy;
-import xyz.hynse.hyeconomy.Process.Scheduler;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getLogger;

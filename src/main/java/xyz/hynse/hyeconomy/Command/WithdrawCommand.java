@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import xyz.hynse.hyeconomy.Hyeconomy;
-import xyz.hynse.hyeconomy.Process.Scheduler;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import java.util.HashMap;

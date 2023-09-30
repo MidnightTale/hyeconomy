@@ -39,15 +39,32 @@ public class Placeholder extends PlaceholderExpansion {
             String playerName = identifier.replace("balance_", "");
             int balance = PlayerRequest.getPlayerBalanceByName(playerName);
             return String.valueOf(balance);
-        } else if (identifier.startsWith("balance_top_")) {
+        }
+
+        if (identifier.startsWith("balance_top_account")) {
             String[] parts = identifier.split("_");
-            if (parts.length == 3) {
-                int rank = Integer.parseInt(parts[2]);
+            if (parts.length == 4) {
+                int rank = Integer.parseInt(parts[3]);
                 if (rank >= 1 && rank <= 10) {
                     List<PlayerBalanceEntry> topPlayers = PlayerRequest.getTopPlayers(rank);
                     if (rank <= topPlayers.size()) {
                         PlayerBalanceEntry topPlayer = topPlayers.get(rank - 1);
                         return String.valueOf(topPlayer.balance());
+                    }
+                }
+            }
+        } else if (identifier.startsWith("balance_top_username")) {
+            String[] parts = identifier.split("_");
+            if (parts.length == 4) {
+                int rank = Integer.parseInt(parts[3]);
+                if (rank >= 1 && rank <= 10) {
+                    List<PlayerBalanceEntry> topPlayers = PlayerRequest.getTopPlayers(rank);
+                    if (rank <= topPlayers.size()) {
+                        PlayerBalanceEntry topPlayer = topPlayers.get(rank - 1);
+                        Player topPlayerObject = Hyeconomy.instance.getServer().getPlayer(topPlayer.playerUUID());
+                        if (topPlayerObject != null) {
+                            return topPlayerObject.getName();
+                        }
                     }
                 }
             }

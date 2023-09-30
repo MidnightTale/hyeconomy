@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.hynse.hyeconomy.Hyeconomy;
-import xyz.hynse.hyeconomy.Process.Scheduler;
 import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 

@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import xyz.hynse.hyeconomy.Hyeconomy;
-import xyz.hynse.hyeconomy.Process.Scheduler;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -44,7 +43,7 @@ public class DepositCommand {
                 setPlayerBalance(player.getUniqueId(), newBalance);
 
                 ItemStack diamondStack = new ItemStack(Material.DIAMOND, amount);
-                player.getInventory().removeItem(diamondStack); // Remove diamonds from inventory
+                player.getInventory().removeItem(diamondStack);
                 if (Hyeconomy.instance.debugMode) {
                     getLogger().info("[DEBUG] Player " + player.getName() + " deposited " + amount + " diamonds. New balance: " + newBalance);
                 }

@@ -10,7 +10,7 @@ softdepend: [PlaceholderAPI]
 commands:
   balance:
     description: Check your balance
-    usage: /balance
+    usage: /balance <player>
     aliases: [bal]
     permission: hyeconomy.balance
   deposit:
@@ -39,3 +39,30 @@ commands:
     permission: hyeconomy.reload
     aliases: [dreload]
     default: op
+  give:
+    description: Display the leaderboard of players with the most diamonds
+    usage: /dgive
+    aliases: [ dgive ]
+    permission: hyeconomy.admin.give.
+    default: op
+  reset:
+    description: Display the leaderboard of players with the most diamonds
+    usage: /dreset
+    aliases: [ dreset ]
+    permission: hyeconomy.admin.reset
+    default: op
+  set:
+    description: Display the leaderboard of players with the most diamonds
+    usage: /dset
+    aliases: [ dset ]
+    permission: hyeconomy.admin.set
+    default: op
+  take:
+    description: Display the leaderboard of players with the most diamonds
+    usage: /dtake
+    aliases: [ dtake ]
+    permission: hyeconomy.admin.take
+    default: op
+permissions:
+  balance.other:
+    description: Allows players to check other players' balances

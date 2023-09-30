@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
 import xyz.hynse.hyeconomy.API.Placeholder;
-import xyz.hynse.hyeconomy.Process.SendCommandTabCompleter;
+import xyz.hynse.hyeconomy.Util.CommandTabCompleterUtil;
 import xyz.hynse.hyeconomy.Util.CommandUtil;
 import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
@@ -33,9 +33,35 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
         Objects.requireNonNull(getCommand("send")).setExecutor(new CommandUtil());
         Objects.requireNonNull(getCommand("top")).setExecutor(new CommandUtil());
         Objects.requireNonNull(getCommand("withdraw")).setExecutor(new CommandUtil());
+        Objects.requireNonNull(getCommand("give")).setExecutor(new CommandUtil());
+        Objects.requireNonNull(getCommand("reset")).setExecutor(new CommandUtil());
+        Objects.requireNonNull(getCommand("take")).setExecutor(new CommandUtil());
+        Objects.requireNonNull(getCommand("set")).setExecutor(new CommandUtil());
         Objects.requireNonNull(getCommand("hyeconomyreload")).setExecutor(new CommandUtil());
 
-        Objects.requireNonNull(getCommand("send")).setTabCompleter(new SendCommandTabCompleter());
+        Objects.requireNonNull(getCommand("give")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+        Objects.requireNonNull(getCommand("take")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+
+        Objects.requireNonNull(getCommand("reset")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+
+        Objects.requireNonNull(getCommand("set")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+
+        Objects.requireNonNull(getCommand("send")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+        Objects.requireNonNull(getCommand("balance")).setTabCompleter(
+                (sender, command, alias, args) -> CommandTabCompleterUtil.completeOnlinePlayerNames(sender, args)
+        );
+
+
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholder().register();
             getLogger().info("PlaceholderAPI Hooked!");
