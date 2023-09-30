@@ -60,7 +60,7 @@ Apache Maven `pom.xml`
 ///repository 
 <repository>
     <id>hyeconomy</id>
-    <url>https://repo.papermc.io/repository/maven-public/</url>
+    <url>https://repo.hynse.xyz/repository/maven-releases/</url>
 </repository>
 
 ///artifact
