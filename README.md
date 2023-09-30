@@ -7,6 +7,7 @@
 - View a leaderboard of top players.
 - Efficient run asynchronously, ensuring that economy-related actions do not cause any lag on your server.
 - Support [MiniMessage](https://docs.advntr.dev/minimessage/format.html) format 
+- PlaceholderAPI supported
 
 ## Server Compatibility
 - **Paper / Folia** and any forks.
