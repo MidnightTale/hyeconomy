@@ -57,17 +57,14 @@ This plugin is open-source and available under the [MIT License](LICENSE).
 ### Information
 Apache Maven `pom.xml`
 ```xml
-///repository 
 <repository>
     <id>hyeconomy</id>
     <url>https://repo.hynse.xyz/repository/maven-releases/</url>
 </repository>
-
-///artifact
 <dependency>
   <groupId>xyz.hynse</groupId>
   <artifactId>api-hyeconomy</artifactId>
-  <version>1.0-SNAPSHOT-2</version>
+  <version>1.0-SNAPSHOT-3</version>
 </dependency>
 ```
 Gradle Groovy DSL `build.gradle`
@@ -76,7 +73,7 @@ repositories {
     maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
 }
 dependencies { 
-    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-2'
+    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-3'
 }
 ```
 

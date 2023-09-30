@@ -19,8 +19,6 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
         debugMode = getConfig().getBoolean("debugMode");
         saveDefaultConfig();
         reloadConfig();
-
-        // Initialize MiniMessage object here
         MessageUtil.initializeMiniMessage();
 
         MessageUtil.updateMessagesConfig();
