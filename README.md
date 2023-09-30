@@ -1,4 +1,4 @@
-
+![image](https://cdn.modrinth.com/data/HrYlg7yE/images/0971ab6c446a501992abca0b630864cd345f3cb6.png)
 ## Features
 - Economy system for managing in-game currency (diamonds).
 - Deposit and withdraw diamonds.
