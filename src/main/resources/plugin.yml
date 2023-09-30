@@ -6,6 +6,7 @@ folia-supported: true
 description: economy using diamonds. Manage your SMP!
 author: MidnightTale_, MDCason, Westy_
 website: https://hynse.xyz
+softdepend: [PlaceholderAPI]
 commands:
   balance:
     description: Check your balance

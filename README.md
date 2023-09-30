@@ -45,6 +45,14 @@ To install Hyeconomy on your server, follow these steps:
 
 You can customize various aspects of the plugin, including messages and database settings, by editing the `config.yml` and `messages.yml` files in the plugin's folder.
 
+## PlaceholderAPI Integration
+install [placeholderapi](https://www.spigotmc.org/resources/placeholderapi.6245/)
+  - display a player's balance `%hyeconomy_balance%`.
+  - display a specific player's balance by name, use `%hyeconomy_balance_PLAYERNAME%` (replace `PLAYERNAME` with the actual player's name).
+  - display the balance of the top 10 players, use `%hyeconomy_balance_top_1%`, `%hyeconomy_balance_top_2%`, and so on, up to `%hyeconomy_balance_top_10%`.
+
+Remember to replace `PLAYERNAME` with the actual player name you want to query in the second type of placeholder.
+
 ## Support
 
 If you encounter any issues or have questions, please feel free to [open an issue](https://github.com/MidnightTale/hyeconomy/issues) on the GitHub repository.

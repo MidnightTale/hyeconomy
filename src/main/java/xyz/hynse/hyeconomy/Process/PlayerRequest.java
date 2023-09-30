@@ -78,4 +78,24 @@ public class PlayerRequest {
 
         return topPlayers;
     }
+    public static int getPlayerBalanceByName(String playerName) {
+        int balance = 0;
+
+        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+             PreparedStatement statement = conn.prepareStatement("SELECT balance FROM player_balances WHERE player_name = ?")) {
+
+            statement.setString(1, playerName);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    balance = resultSet.getInt("balance");
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "An error occurred while fetching player balance for name: " + playerName, e);
+        }
+
+        return balance;
+    }
+
 }
