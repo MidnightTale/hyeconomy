@@ -12,7 +12,6 @@ import static org.bukkit.Bukkit.getServer;
 
 public class ReloadCommand {
     public static void execute(CommandSender sender) {
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!(sender instanceof Player) || sender.hasPermission("hyeconomy.reload")) {
                 if (HikariCPUtil.dataSource != null) {
                     HikariCPUtil.dataSource.close();
@@ -26,6 +25,5 @@ public class ReloadCommand {
             } else {
                 sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
             }
-        });
     }
 }

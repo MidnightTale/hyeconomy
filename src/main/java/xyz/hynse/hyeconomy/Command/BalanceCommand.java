@@ -18,7 +18,6 @@ public class BalanceCommand {
             return;
         }
 
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!(sender instanceof Player player)) {
                 sender.sendMessage((Component) MessageUtil.getMessage("general.playerOnly"));
                 return;
@@ -27,6 +26,5 @@ public class BalanceCommand {
             UUID playerUUID = player.getUniqueId();
             int balance = PlayerRequest.getPlayerBalance(playerUUID);
             player.sendMessage((Component) MessageUtil.getMessage("general.balance", "%balance%", String.valueOf(balance)));
-        });
     }
 }

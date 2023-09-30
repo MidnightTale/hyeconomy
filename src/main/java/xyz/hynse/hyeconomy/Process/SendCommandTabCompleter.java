@@ -19,14 +19,12 @@ public class SendCommandTabCompleter implements TabCompleter {
             String partialName = args[0].toLowerCase();
             List<String> completions = new ArrayList<>();
 
-            Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, t -> {
                 for (Player onlinePlayer : sender.getServer().getOnlinePlayers()) {
                     String playerName = onlinePlayer.getName();
                     if (playerName.toLowerCase().startsWith(partialName)) {
                         completions.add(playerName);
                     }
                 }
-            });
 
             return completions;
         }

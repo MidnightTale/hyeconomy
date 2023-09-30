@@ -13,7 +13,6 @@ import static xyz.hynse.hyeconomy.Process.PlayerRequest.setPlayerBalance;
 
 public class SendCommand {
     public static void execute(Player player, String[] args) {
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!player.hasPermission("hyeconomy.send")) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
                 return;
@@ -69,6 +68,5 @@ public class SendCommand {
             } catch (NumberFormatException e) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
             }
-        });
     }
 }

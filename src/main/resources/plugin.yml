@@ -39,7 +39,3 @@ commands:
     permission: hyeconomy.reload
     aliases: [dreload]
     default: op
-libraries:
-  - com.zaxxer:HikariCP:5.0.1
-  - org.mariadb.jdbc:mariadb-java-client:3.2.0
-  - net.kyori:adventure-text-minimessage:4.14.0

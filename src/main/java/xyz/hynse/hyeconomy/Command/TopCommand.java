@@ -17,7 +17,6 @@ public class TopCommand {
             player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
             return;
         }
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
                     int limit = 10;
                     List<PlayerBalanceEntry> topPlayers = PlayerRequest.getTopPlayers(limit);
                     player.sendMessage((Component) MessageUtil.getMessage("top.header"));
@@ -29,7 +28,6 @@ public class TopCommand {
                         String playerName = Bukkit.getOfflinePlayer(entry.playerUUID()).getName();
                         player.sendMessage((Component) MessageUtil.getMessage("top.format", "%position%", String.valueOf(i + 1), "%player%", playerName, "%balance%", String.valueOf(entry.balance())));
                     }
-                });
         player.sendMessage((Component) MessageUtil.getMessage("top.footer"));
     }
 }

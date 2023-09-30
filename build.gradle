@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'xyz.hynse'
-version = '1.0-SNAPSHOT-4'
+version = '1.1-SNAPSHOT-1'
 repositories {
     mavenCentral()
     maven {
@@ -47,6 +47,8 @@ dependencies {
     shadowJar {
         // Relocate the HikariCP package
         relocate 'com.zaxxer.hikari', 'xyz.hynse.hyeconomy.hikari'
+        // Relocate the PlaceholderAPI package
+        relocate 'me.clip:placeholderapi', 'xyz.hynse.hyeconomy.placeholderapi'
     }
 }
 publishing {

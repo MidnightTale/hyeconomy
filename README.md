@@ -5,7 +5,6 @@
 - Send diamonds to other players.
 - Check your current balance.
 - View a leaderboard of top players.
-- Efficient run asynchronously, ensuring that economy-related actions do not cause any lag on your server.
 - Support [MiniMessage](https://docs.advntr.dev/minimessage/format.html) format 
 - PlaceholderAPI supported
 
@@ -73,7 +72,7 @@ Apache Maven `pom.xml`
 <dependency>
   <groupId>xyz.hynse</groupId>
   <artifactId>api-hyeconomy</artifactId>
-  <version>1.0-SNAPSHOT-4</version>
+  <version>1.1-SNAPSHOT-1</version>
 </dependency>
 ```
 Gradle Groovy DSL `build.gradle`
@@ -82,7 +81,7 @@ repositories {
     maven { url = "https://repo.hynse.xyz/repository/maven-releases/"}
 }
 dependencies { 
-    implementation 'xyz.hynse:api-hyeconomy:1.0-SNAPSHOT-4'
+    compileOnly 'xyz.hynse:api-hyeconomy:1.1-SNAPSHOT-1'
 }
 ```
 

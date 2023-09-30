@@ -1,5 +1,6 @@
 package xyz.hynse.hyeconomy;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
 import xyz.hynse.hyeconomy.API.Placeholder;
@@ -19,7 +20,6 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
         instance = this;
         debugMode = getConfig().getBoolean("debugMode");
         saveDefaultConfig();
-        reloadConfig();
         MessageUtil.initializeMiniMessage();
 
         MessageUtil.updateMessagesConfig();
@@ -36,7 +36,14 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
         Objects.requireNonNull(getCommand("hyeconomyreload")).setExecutor(new CommandUtil());
 
         Objects.requireNonNull(getCommand("send")).setTabCompleter(new SendCommandTabCompleter());
-        new Placeholder().register();
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new Placeholder().register();
+            getLogger().info("PlaceholderAPI Hooked!");
+        } else {
+            getLogger().warning("PlaceholderAPI not found! Some features may not work.");
+            getLogger().warning("Consider installing PlaceholderAPI as an optional feature.");
+        }
+
     }
 
     @Override

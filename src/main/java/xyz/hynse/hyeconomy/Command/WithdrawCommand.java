@@ -17,7 +17,6 @@ import static xyz.hynse.hyeconomy.Util.InventoryUtil.hasInventorySpace;
 
 public class WithdrawCommand {
     public static void execute(Player player, String[] args) {
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!player.hasPermission("hyeconomy.withdraw")) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
                 return;
@@ -68,6 +67,5 @@ public class WithdrawCommand {
             } catch (NumberFormatException e) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
             }
-        });
     }
 }

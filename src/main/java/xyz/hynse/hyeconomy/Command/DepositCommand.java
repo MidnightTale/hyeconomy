@@ -15,7 +15,6 @@ import static xyz.hynse.hyeconomy.Util.InventoryUtil.countDiamondsInInventory;
 
 public class DepositCommand {
     public static void execute(Player player, String[] args) {
-        Scheduler.runAsyncSchedulerNow(Hyeconomy.instance, task -> {
             if (!player.hasPermission("hyeconomy.deposit")) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
                 return;
@@ -54,6 +53,5 @@ public class DepositCommand {
             } catch (NumberFormatException e) {
                 player.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
             }
-        });
     }
 }
