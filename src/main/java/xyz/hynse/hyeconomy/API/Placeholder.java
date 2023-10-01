@@ -43,7 +43,7 @@ public class Placeholder extends PlaceholderExpansion {
             return String.valueOf(balance);
         }
 
-        if (identifier.startsWith("balance_top_account")) {
+        if (identifier.startsWith("balance_top_amount")) {
             String[] parts = identifier.split("_");
             if (parts.length == 4) {
                 int rank = Integer.parseInt(parts[3]);

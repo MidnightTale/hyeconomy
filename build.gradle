@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'xyz.hynse'
-version = '1.1-SNAPSHOT-2'
+version = '1.2-SNAPSHOT-1'
 repositories {
     mavenCentral()
     maven {
