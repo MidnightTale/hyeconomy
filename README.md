@@ -17,14 +17,6 @@
 
 Hyeconomy utilizes MariaDB for database storage. This ensures reliable and efficient data storage for player balances and transactions.
 
-## Installation
-
-To install Hyeconomy on your server, follow these steps:
-
-1. Download the plugin JAR file from the [Releases](https://github.com/MidnightTale/hyeconomy/releases) section.
-2. Place the JAR file in your server's `plugins` folder.
-3. Start or reload your server.
-
 ## Commands
 ### Player Command
 - `/balance`: Check your current balance.
