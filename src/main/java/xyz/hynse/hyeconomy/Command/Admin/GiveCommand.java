@@ -5,8 +5,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Process.PlayerRequest;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
+
+import static xyz.hynse.hyeconomy.Process.PlayerRequest.logTransaction;
 
 public class GiveCommand {
     public static void execute(@NotNull CommandSender sender, String[] args) {
@@ -22,19 +25,19 @@ public class GiveCommand {
             try {
                 amount = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
-                sender.sendMessage((Component) MessageUtil.getMessage("admin.give.invalidAmount"));
+                sender.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
                 return;
             }
 
             if (amount < 0) {
-                sender.sendMessage((Component) MessageUtil.getMessage("admin.give.invalidAmount"));
+                sender.sendMessage((Component) MessageUtil.getMessage("general.invalidAmount"));
                 return;
             }
 
             Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
 
             if (targetPlayer == null) {
-                sender.sendMessage((Component) MessageUtil.getMessage("admin.give.playerNotFound"));
+                sender.sendMessage((Component) MessageUtil.getMessage("general.playerNotFound"));
                 return;
             }
 
@@ -43,7 +46,10 @@ public class GiveCommand {
             PlayerRequest.setPlayerBalance(targetPlayer.getUniqueId(), newBalance);
 
             sender.sendMessage((Component) MessageUtil.getMessage("admin.give.success", "%player%", targetPlayer.getName(), "%amount%", String.valueOf(amount)));
-            targetPlayer.sendMessage((Component) MessageUtil.getMessage("admin.give.targetReceived", "%amount%", String.valueOf(amount)));
+            logTransaction(targetPlayer.getUniqueId(), null, amount);
+            if (Hyeconomy.instance.adminFeedback) {
+                targetPlayer.sendMessage((Component) MessageUtil.getMessage("admin.give.targetReceived", "%amount%", String.valueOf(amount), "%sender%", String.valueOf(sender)));
+            }
         } else {
             sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
         }

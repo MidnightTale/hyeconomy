@@ -8,8 +8,7 @@ import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getLogger;
-import static xyz.hynse.hyeconomy.Process.PlayerRequest.getPlayerBalance;
-import static xyz.hynse.hyeconomy.Process.PlayerRequest.setPlayerBalance;
+import static xyz.hynse.hyeconomy.Process.PlayerRequest.*;
 import static xyz.hynse.hyeconomy.Util.InventoryUtil.countDiamondsInInventory;
 
 public class DepositCommand {
@@ -27,7 +26,7 @@ public class DepositCommand {
             try {
                 int amount = Integer.parseInt(args[0]);
                 if (amount <= 0) {
-                    player.sendMessage((Component) MessageUtil.getMessage("deposit.AmountPositive"));
+                    player.sendMessage((Component) MessageUtil.getMessage("general.AmountPositive"));
                     return;
                 }
 
@@ -44,6 +43,7 @@ public class DepositCommand {
 
                 ItemStack diamondStack = new ItemStack(Material.DIAMOND, amount);
                 player.getInventory().removeItem(diamondStack);
+                logTransaction(player.getUniqueId(), null, amount);
                 if (Hyeconomy.instance.debugMode) {
                     getLogger().info("[DEBUG] Player " + player.getName() + " deposited " + amount + " diamonds. New balance: " + newBalance);
                 }

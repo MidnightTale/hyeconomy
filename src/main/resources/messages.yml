@@ -5,22 +5,20 @@ messages:
     invalidAmount: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Invalid amount of diamonds<newline> "
     reloadSuccess: "<#51ed40>ECONOMY<newline><#56f563>✔ <white>Configuration and messages reloaded<newline> "
     noPermission: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>You do not have permission to use this command<newline> "
+    PlayerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
+    AmountPositive: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>The amount of diamonds cannot be negative<newline> "
   deposit:
     Usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: <hover:show_text:'Click to copy'><click:copy_to_clipboard:/dp >/dp [<#d2f04d>amount<white>]<newline> "
-    AmountPositive: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>The amount of diamonds cannot be negative<newline> "
     NotEnoughDiamonds: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>You do not have enough diamonds in your balance<newline> "
     Success: "<#51ed40>ECONOMY<newline><#47e82e>↑ <white>Deposited <#71eb5e>%amount%<white> diamonds <newline><#3dcdf5>💎 <white>Your new balance: <#80d9f2>%new_balance%<white> diamonds<newline> "
   send:
     Usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: <hover:show_text:'Click to copy'><click:copy_to_clipboard:/dsend >/dsend [<#d2f04d>player<white>] [<#d2f04d>amount<white>]</click><newline> "
-    AmountPositive: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>The amount of diamonds cannot be negative<newline> "
-    PlayerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
     NotEnoughDiamonds: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>You do not have enough diamonds<newline> "
     SuccessSender: "<#51ed40>ECONOMY<newline><#fc3535>→<white> Sent <#ed6b6b>%amount%<white> diamonds<newline>to: <#ddf032>%target%<newline> "
     SuccessReceiver: "<#51ed40>ECONOMY<newline><#47e82e>>←<white> Received <#71eb5e>%amount%<white> diamonds<newline>from: <#ddf032>%sender%<newline> "
     SelfSend: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>You cannot send diamonds to yourself<newline> "
   withdraw:
     Usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: <hover:show_text:'Click to copy'><click:copy_to_clipboard:/wd >/wd [<#d2f04d>amount<white>]<newline> "
-    AmountPositive: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>The amount must not be negative<newline> "
     NotEnoughBalance: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>You do not have enough diamonds in your balance<newline> "
     NotEnoughSpace: "<#51ed40>ECONOMY<newline><#fa8b23>█<white> Not enough space to withdraw <#f7b06d>%amount%<white> diamonds<newline> "
     NotEnoughSpacePartial: "<#51ed40>ECONOMY<newline><#fa8b23>█<white> Not enough space to withdraw <#f7b06d>%diamondback%<white> diamonds<newline> "
@@ -32,30 +30,22 @@ messages:
   balance:
     display: "<#51ed40>ECONOMY<newline><#3dcdf5>💎 <white>Your balance: <#80d9f2>%balance%<white> diamonds<newline> "
     consoleUsage: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Usage: /balance <player><newline> "
-    playerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
     usage: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Usage: /balance [player]<newline> "
   admin:
     give:
       usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: /give <player> <amount><newline> "
-      invalidAmount: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Invalid amount<newline> "
-      playerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
       success: "<#51ed40>ECONOMY<newline><#47e82e>↑ <white>Given <#71eb5e>%amount%<white> diamonds to <#ddf032>%player%<newline> "
       targetReceived: "<#51ed40>ECONOMY<newline><#47e82e>↑ <white>Received <#71eb5e>%amount%<white> diamonds from <#ddf032>%sender%<newline> "
     reset:
       usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: /reset <player><newline> "
-      playerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
       success: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Reset <#ed6b6b>%player%'s balance<newline> "
       targetReset: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Your balance has been reset<newline> "
     set:
       usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: /set <player> <amount><newline> "
-      invalidAmount: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Invalid amount<newline> "
-      playerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
       success: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Set <#ed6b6b>%player%'s balance to <#ddf032>%amount%<newline> "
       targetSet: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Your balance has been set to <#ddf032>%amount%<newline> "
     take:
       usage: "<#51ed40>ECONOMY<newline><#cff71b>✎ <white>Usage: /take <player> <amount><newline> "
-      invalidAmount: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Invalid amount<newline> "
-      playerNotFound: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Player not found<newline> "
       insufficientBalance: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Insufficient balance<newline> "
       success: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Took <#ed6b6b>%amount%<white> diamonds from <#ddf032>%player%<newline> "
       targetTaken: "<#51ed40>ECONOMY<newline><#fc3535>↓ <white>Taken <#ed6b6b>%amount%<white> diamonds by <#ddf032>%sender%<newline> "

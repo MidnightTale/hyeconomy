@@ -20,8 +20,6 @@ public class CommandUtil implements CommandExecutor {
             ReloadCommand.execute(sender);
             return true;
         }
-
-        // Check if the sender is a player or console
         if (sender instanceof Player player) {
             switch (cmd.getName().toLowerCase()) {
                 case "balance" -> BalanceCommand.execute(sender, args);

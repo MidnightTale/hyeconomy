@@ -1,7 +1,5 @@
 package xyz.hynse.hyeconomy.Process;
 
-import xyz.hynse.hyeconomy.Util.HikariCPUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +9,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static xyz.hynse.hyeconomy.Hyeconomy.dataSource;
 
 public class PlayerRequest {
     private static final Logger logger = Logger.getLogger(PlayerRequest.class.getName());
@@ -26,7 +26,7 @@ public class PlayerRequest {
     private static int getPlayerData(UUID playerUUID) {
         int data = 0;
 
-        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+        try (Connection conn = dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("SELECT balance FROM player_balances WHERE player_uuid = ?")) {
 
             statement.setString(1, playerUUID.toString());
@@ -45,7 +45,7 @@ public class PlayerRequest {
     }
 
     private static void setPlayerData(UUID playerUUID, int newData) {
-        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+        try (Connection conn = dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("REPLACE INTO player_balances (player_uuid, balance) VALUES (?, ?)")) {
 
             statement.setString(1, playerUUID.toString());
@@ -57,10 +57,23 @@ public class PlayerRequest {
             logger.log(Level.SEVERE, "An error occurred while setting player balance for UUID: " + playerUUID, e);
         }
     }
+
+    public static void subtractFromPlayerBalance(UUID playerUUID, int amount) {
+        int currentBalance = getPlayerBalance(playerUUID);
+        int newBalance = currentBalance - amount;
+        setPlayerBalance(playerUUID, newBalance);
+    }
+
+    public static void addToPlayerBalance(UUID playerUUID, int amount) {
+        int currentBalance = getPlayerBalance(playerUUID);
+        int newBalance = currentBalance + amount;
+        setPlayerBalance(playerUUID, newBalance);
+    }
+
     public static List<PlayerBalanceEntry> getTopPlayers(int limit) {
         List<PlayerBalanceEntry> topPlayers = new ArrayList<>();
 
-        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+        try (Connection conn = dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("SELECT player_uuid, balance FROM player_balances ORDER BY balance DESC LIMIT ?")) {
 
             statement.setInt(1, limit);
@@ -78,29 +91,10 @@ public class PlayerRequest {
 
         return topPlayers;
     }
-    public static int getPlayerBalanceByName(String playerName) {
-        int balance = 0;
-
-        try (Connection conn = HikariCPUtil.dataSource.getConnection();
-             PreparedStatement statement = conn.prepareStatement("SELECT balance FROM player_balances WHERE player_name = ?")) {
-
-            statement.setString(1, playerName);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    balance = resultSet.getInt("balance");
-                }
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "An error occurred while fetching player balance for name: " + playerName, e);
-        }
-
-        return balance;
-    }
     public static UUID getPlayerUUIDByName(String playerName) {
         UUID playerUUID = null;
 
-        try (Connection conn = HikariCPUtil.dataSource.getConnection();
+        try (Connection conn = dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement("SELECT player_uuid FROM player_balances WHERE player_name = ?")) {
 
             statement.setString(1, playerName);
@@ -115,6 +109,17 @@ public class PlayerRequest {
         }
 
         return playerUUID;
+    }
+    public static void logTransaction(UUID senderUUID, UUID recipientUUID, int amount) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO transaction_history (sender_uuid, recipient_uuid, amount, timestamp) VALUES (?, ?, ?, NOW())")) {
+            stmt.setString(1, senderUUID.toString());
+            stmt.setString(2, recipientUUID.toString());
+            stmt.setInt(3, amount);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "An error occurred while logging a transaction: " + e.getMessage(), e);
+        }
     }
 
 }

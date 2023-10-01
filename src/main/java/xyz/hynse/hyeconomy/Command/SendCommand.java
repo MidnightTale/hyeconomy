@@ -7,8 +7,7 @@ import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getLogger;
-import static xyz.hynse.hyeconomy.Process.PlayerRequest.getPlayerBalance;
-import static xyz.hynse.hyeconomy.Process.PlayerRequest.setPlayerBalance;
+import static xyz.hynse.hyeconomy.Process.PlayerRequest.*;
 
 public class SendCommand {
     public static void execute(Player player, String[] args) {
@@ -34,7 +33,7 @@ public class SendCommand {
             try {
                 int amount = Integer.parseInt(args[1]);
                 if (amount <= 0) {
-                    player.sendMessage((Component) MessageUtil.getMessage("send.AmountPositive"));
+                    player.sendMessage((Component) MessageUtil.getMessage("general.AmountPositive"));
                     return;
                 }
 
@@ -48,7 +47,7 @@ public class SendCommand {
                     targetPlayer = Bukkit.getOfflinePlayer(targetPlayerName).getPlayer();
 
                     if (targetPlayer == null) {
-                        player.sendMessage((Component) MessageUtil.getMessage("send.PlayerNotFound"));
+                        player.sendMessage((Component) MessageUtil.getMessage("general.PlayerNotFound"));
                         return;
                     }
                 }
@@ -57,6 +56,7 @@ public class SendCommand {
 
                 setPlayerBalance(player.getUniqueId(), senderBalance - amount);
                 setPlayerBalance(targetPlayer.getUniqueId(), targetBalance + amount);
+                logTransaction(player.getUniqueId(), targetPlayer.getUniqueId(), amount);
 
                 if (Hyeconomy.instance.debugMode) {
                     getLogger().info("[DEBUG] Player " + player.getName() + " sent " + amount + " diamonds to " + targetPlayer.getName());

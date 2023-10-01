@@ -24,12 +24,15 @@ public class BalanceCommand {
                 sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
             }
         } else if (args.length == 1) {
-            if (sender.hasPermission("hyeconomy.balance.other")) {
+            if (!sender.hasPermission("hyeconomy.balance.other")) {
+                sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
+                return;
+            }
                 String targetPlayerName = args[0];
                 UUID targetPlayerUUID = PlayerRequest.getPlayerUUIDByName(targetPlayerName);
 
                 if (targetPlayerUUID == null) {
-                    sender.sendMessage((Component) MessageUtil.getMessage("balance.playerNotFound"));
+                    sender.sendMessage((Component) MessageUtil.getMessage("general.playerNotFound"));
                     return;
                 }
 
@@ -38,8 +41,5 @@ public class BalanceCommand {
             } else {
                 sender.sendMessage((Component) MessageUtil.getMessage("balance.usage"));
             }
-        } else {
-            sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
-        }
     }
 }

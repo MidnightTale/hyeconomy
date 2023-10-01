@@ -8,12 +8,13 @@ import xyz.hynse.hyeconomy.Util.HikariCPUtil;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
 import static org.bukkit.Bukkit.getServer;
+import static xyz.hynse.hyeconomy.Hyeconomy.dataSource;
 
 public class ReloadCommand {
     public static void execute(CommandSender sender) {
             if (!(sender instanceof Player) || sender.hasPermission("hyeconomy.reload")) {
-                if (HikariCPUtil.dataSource != null) {
-                    HikariCPUtil.dataSource.close();
+                if (dataSource != null) {
+                    dataSource.close();
                 }
                 Hyeconomy.instance.reloadConfig();
                 MessageUtil.updateMessagesConfig();

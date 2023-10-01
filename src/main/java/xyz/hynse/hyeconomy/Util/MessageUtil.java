@@ -7,9 +7,10 @@ import xyz.hynse.hyeconomy.Hyeconomy;
 
 import java.io.File;
 
+import static xyz.hynse.hyeconomy.Hyeconomy.messagesConfig;
+import static xyz.hynse.hyeconomy.Hyeconomy.mm;
+
 public class MessageUtil {
-    private static MiniMessage mm;
-    private static FileConfiguration messagesConfig = null;
 
     public static void initializeMiniMessage() {
         mm = MiniMessage.builder().build();

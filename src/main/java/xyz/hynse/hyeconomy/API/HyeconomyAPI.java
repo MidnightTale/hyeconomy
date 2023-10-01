@@ -29,4 +29,24 @@ public interface HyeconomyAPI {
     static void setPlayerBalance(UUID playerUUID, int newBalance) {
         PlayerRequest.setPlayerBalance(playerUUID, newBalance);
     }
+
+    /**
+     * Subtracts the specified amount from a player's balance.
+     *
+     * @param playerUUID The UUID of the player.
+     * @param amount The amount to subtract from the player's balance.
+     */
+    static void subtractFromPlayerBalance(UUID playerUUID, int amount) {
+        PlayerRequest.subtractFromPlayerBalance(playerUUID, amount);
+    }
+
+    /**
+     * Adds the specified amount to a player's balance.
+     *
+     * @param playerUUID The UUID of the player.
+     * @param amount The amount to add to the player's balance.
+     */
+    static void addToPlayerBalance(UUID playerUUID, int amount) {
+        PlayerRequest.addToPlayerBalance(playerUUID, amount);
+    }
 }

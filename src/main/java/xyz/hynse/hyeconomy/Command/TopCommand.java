@@ -26,6 +26,6 @@ public class TopCommand {
                         String playerName = Bukkit.getOfflinePlayer(entry.playerUUID()).getName();
                         player.sendMessage((Component) MessageUtil.getMessage("top.format", "%position%", String.valueOf(i + 1), "%player%", playerName, "%balance%", String.valueOf(entry.balance())));
                     }
-        player.sendMessage((Component) MessageUtil.getMessage("top.footer"));
+                    try { player.sendMessage((Component) MessageUtil.getMessage("top.footer")); } catch (ClassCastException ignored) {}
     }
 }

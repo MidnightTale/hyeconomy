@@ -1,6 +1,9 @@
 package xyz.hynse.hyeconomy;
 
+import com.zaxxer.hikari.HikariDataSource;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.hyeconomy.API.HyeconomyAPI;
 import xyz.hynse.hyeconomy.API.Placeholder;
@@ -13,12 +16,20 @@ import java.util.Objects;
 
 public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
     public boolean debugMode;
+    public boolean adminFeedback;
     public static Hyeconomy instance;
-
+    public static MiniMessage mm;
+    public static FileConfiguration messagesConfig = null;
+    public static HikariDataSource dataSource;
+    public static String configversionyml = String.valueOf(1);
+    //TODO
+    public static String messagesversionyml = String.valueOf(1);
+    //TODO
     @Override
     public void onEnable() {
         instance = this;
         debugMode = getConfig().getBoolean("debugMode");
+        adminFeedback = getConfig().getBoolean("adminFeedback");
         saveDefaultConfig();
         MessageUtil.initializeMiniMessage();
 
@@ -74,8 +85,8 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
 
     @Override
     public void onDisable() {
-        if (HikariCPUtil.dataSource != null) {
-            HikariCPUtil.dataSource.close();
+        if (dataSource != null) {
+            dataSource.close();
             getLogger().info("Hyeconomy database connection closed.");
         }
         getLogger().info("Hyeconomy has been disabled.");

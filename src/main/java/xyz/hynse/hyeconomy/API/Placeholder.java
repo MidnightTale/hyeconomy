@@ -8,6 +8,7 @@ import xyz.hynse.hyeconomy.Process.PlayerBalanceEntry;
 import xyz.hynse.hyeconomy.Process.PlayerRequest;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Placeholder extends PlaceholderExpansion {
 
@@ -37,7 +38,8 @@ public class Placeholder extends PlaceholderExpansion {
             return String.valueOf(balance);
         } else if (identifier.startsWith("balance_")) {
             String playerName = identifier.replace("balance_", "");
-            int balance = PlayerRequest.getPlayerBalanceByName(playerName);
+            UUID targetPlayerUUID = PlayerRequest.getPlayerUUIDByName(playerName);
+            int balance = PlayerRequest.getPlayerBalance(targetPlayerUUID);
             return String.valueOf(balance);
         }
 
@@ -53,6 +55,7 @@ public class Placeholder extends PlaceholderExpansion {
                     }
                 }
             }
+
         } else if (identifier.startsWith("balance_top_username")) {
             String[] parts = identifier.split("_");
             if (parts.length == 4) {
@@ -69,7 +72,6 @@ public class Placeholder extends PlaceholderExpansion {
                 }
             }
         }
-
         return null;
     }
 }

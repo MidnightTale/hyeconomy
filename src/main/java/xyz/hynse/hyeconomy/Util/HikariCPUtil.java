@@ -11,9 +11,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 
 import static org.bukkit.Bukkit.getLogger;
+import static xyz.hynse.hyeconomy.Hyeconomy.dataSource;
 
 public class HikariCPUtil {
-    public static HikariDataSource dataSource;
     public static void initializeDataSource(FileConfiguration config) {
         try {
             String driver = config.getString("database.driver");
