@@ -16,7 +16,6 @@ import java.util.Objects;
 
 public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
     public boolean debugMode;
-    public boolean adminFeedback;
     public static Hyeconomy instance;
     public static MiniMessage mm;
     public static FileConfiguration messagesConfig = null;
@@ -29,7 +28,6 @@ public final class Hyeconomy extends JavaPlugin implements HyeconomyAPI {
     public void onEnable() {
         instance = this;
         debugMode = getConfig().getBoolean("debugMode");
-        adminFeedback = getConfig().getBoolean("adminFeedback");
         saveDefaultConfig();
         MessageUtil.initializeMiniMessage();
 

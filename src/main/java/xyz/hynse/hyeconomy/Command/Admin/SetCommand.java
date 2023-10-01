@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Process.PlayerRequest;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
@@ -45,9 +44,6 @@ public class SetCommand {
 
             sender.sendMessage((Component) MessageUtil.getMessage("admin.set.success", "%player%", targetPlayer.getName(), "%amount%", String.valueOf(amount)));
             logTransaction(targetPlayer.getUniqueId(), null, amount);
-            if (Hyeconomy.instance.adminFeedback) {
-                targetPlayer.sendMessage((Component) MessageUtil.getMessage("admin.set.targetSet", "%amount%", String.valueOf(amount)));
-            }
         } else {
             sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
         }

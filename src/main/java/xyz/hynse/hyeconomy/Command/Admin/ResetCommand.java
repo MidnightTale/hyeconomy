@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import xyz.hynse.hyeconomy.Hyeconomy;
 import xyz.hynse.hyeconomy.Process.PlayerRequest;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
@@ -31,10 +30,6 @@ public class ResetCommand {
 
             sender.sendMessage((Component) MessageUtil.getMessage("admin.reset.success", "%player%", targetPlayer.getName()));
             logTransaction(targetPlayer.getUniqueId(), null, 0);
-            if (Hyeconomy.instance.adminFeedback) {
-                targetPlayer.sendMessage((Component) MessageUtil.getMessage("admin.reset.targetReset"));
-            }
-
         } else {
             sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
         }

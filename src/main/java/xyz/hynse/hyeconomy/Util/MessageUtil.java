@@ -13,6 +13,7 @@ import static xyz.hynse.hyeconomy.Hyeconomy.mm;
 public class MessageUtil {
 
     public static void initializeMiniMessage() {
+
         mm = MiniMessage.builder().build();
     }
 
