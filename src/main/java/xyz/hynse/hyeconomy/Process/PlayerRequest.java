@@ -95,12 +95,19 @@ public class PlayerRequest {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO transaction_history (sender_uuid, recipient_uuid, amount, timestamp) VALUES (?, ?, ?, NOW())")) {
             stmt.setString(1, senderUUID.toString());
-            stmt.setString(2, recipientUUID.toString());
+
+            if (recipientUUID != null) {
+                stmt.setString(2, recipientUUID.toString());
+            } else {
+                stmt.setString(2, "server");
+            }
+
             stmt.setInt(3, amount);
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "An error occurred while logging a transaction: " + e.getMessage(), e);
         }
     }
+
 
 }
