@@ -29,6 +29,7 @@ messages:
     footer: ""
   balance:
     display: "<#51ed40>ECONOMY<newline><#3dcdf5>💎 <white>Your balance: <#80d9f2>%balance%<white> diamonds<newline> "
+    displayother: "<#51ed40>ECONOMY<newline><#3dcdf5>💎 <#ed6b6b>%player%<white>have balance: <#80d9f2>%balance%<white> diamonds<newline> "
     consoleUsage: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Usage: /balance <player><newline> "
     usage: "<#51ed40>ECONOMY<newline><#ff4747>✖ <white>Usage: /balance [player]<newline> "
   admin:

@@ -31,7 +31,7 @@ public class BalanceCommand {
                 UUID targetPlayerUUID = Objects.requireNonNull(targetPlayer).getUniqueId();
 
                 int balance = PlayerRequest.getPlayerBalance(targetPlayerUUID);
-                sender.sendMessage((Component) MessageUtil.getMessage("balance.display", "%player%", targetPlayerName, "%balance%", String.valueOf(balance)));
+                sender.sendMessage((Component) MessageUtil.getMessage("balance.displayother", "%player%", targetPlayerName, "%balance%", String.valueOf(balance)));
             } else {
                 sender.sendMessage((Component) MessageUtil.getMessage("balance.usage"));
             }
