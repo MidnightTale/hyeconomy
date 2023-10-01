@@ -91,25 +91,6 @@ public class PlayerRequest {
 
         return topPlayers;
     }
-    public static UUID getPlayerUUIDByName(String playerName) {
-        UUID playerUUID = null;
-
-        try (Connection conn = dataSource.getConnection();
-             PreparedStatement statement = conn.prepareStatement("SELECT player_uuid FROM player_balances WHERE player_name = ?")) {
-
-            statement.setString(1, playerName);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    playerUUID = UUID.fromString(resultSet.getString("player_uuid"));
-                }
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "An error occurred while fetching player UUID for name: " + playerName, e);
-        }
-
-        return playerUUID;
-    }
     public static void logTransaction(UUID senderUUID, UUID recipientUUID, int amount) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO transaction_history (sender_uuid, recipient_uuid, amount, timestamp) VALUES (?, ?, ?, NOW())")) {

@@ -1,12 +1,14 @@
 package xyz.hynse.hyeconomy.Command;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import xyz.hynse.hyeconomy.Process.PlayerRequest;
 import xyz.hynse.hyeconomy.Util.MessageUtil;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class BalanceCommand {
@@ -25,21 +27,19 @@ public class BalanceCommand {
             }
         } else if (args.length == 1) {
             if (!sender.hasPermission("hyeconomy.balance.other")) {
-                sender.sendMessage((Component) MessageUtil.getMessage("general.noPermission"));
-                return;
-            }
                 String targetPlayerName = args[0];
-                UUID targetPlayerUUID = PlayerRequest.getPlayerUUIDByName(targetPlayerName);
-
-                if (targetPlayerUUID == null) {
-                    sender.sendMessage((Component) MessageUtil.getMessage("general.playerNotFound"));
+                Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
+                if (targetPlayer == null) {
+                    sender.sendMessage((Component) MessageUtil.getMessage("balance.playerNotFound"));
                     return;
                 }
+                UUID targetPlayerUUID = Objects.requireNonNull(targetPlayer).getUniqueId();
 
                 int balance = PlayerRequest.getPlayerBalance(targetPlayerUUID);
                 sender.sendMessage((Component) MessageUtil.getMessage("balance.display", "%player%", targetPlayerName, "%balance%", String.valueOf(balance)));
             } else {
                 sender.sendMessage((Component) MessageUtil.getMessage("balance.usage"));
             }
+        }
     }
 }
